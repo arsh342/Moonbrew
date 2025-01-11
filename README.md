@@ -256,6 +256,10 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> 70808958c7835e1da6157b63dd032e066383ecc2
+>>>>>>> Stashed changes
 =======
 >>>>>>> 70808958c7835e1da6157b63dd032e066383ecc2
 >>>>>>> Stashed changes
