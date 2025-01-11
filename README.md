@@ -130,7 +130,7 @@ Contributions are welcome! 🎉 Please follow these steps: 🎉
 ---
 
 ## 📞 Contact
-📬 Your Name - https://twitter.com/ - mailto:arshth134@gmail.com 📬
+📬 Your Name - https://twitter.com/ - arshth134@gmail.com 📬
 
 Project Link: https://github.com/arsh342/Moonbrew 🌐
 
