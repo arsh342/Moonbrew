@@ -130,12 +130,15 @@ Contributions are welcome! 🎉 Please follow these steps: 🎉
 ---
 
 ## 📞 Contact
-📬 Your Name - [@your_twitter](https://twitter.com/your_twitter) - [email@example.com](mailto:email@example.com) 📬
+📬 Your Name - https://twitter.com/ - mailto:arshth134@gmail.com 📬
 
-Project Link: [https://github.com/your-username/moonbrew-coffee-shop](https://github.com/your-username/moonbrew-coffee-shop) 🌐
+Project Link: https://github.com/arsh342/Moonbrew 🌐
 
 ---
 
+<<<<<<< HEAD
+Made with ❤️ by the Moonbrew Coffee Shop Team 🌟
+=======
 Made with ❤️ by the Moonbrew Coffee Shop Team 🌟
 
 =======
@@ -252,3 +255,11 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> 70808958c7835e1da6157b63dd032e066383ecc2
+>>>>>>> Stashed changes
+=======
+>>>>>>> 70808958c7835e1da6157b63dd032e066383ecc2
+>>>>>>> Stashed changes
