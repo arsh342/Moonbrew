@@ -14,26 +14,71 @@ export default function Bill() {
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderId, setOrderId] = useState(null);
 
-  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
 
   const handlePaymentComplete = async (paymentDetails) => {
     try {
       setIsProcessing(true);
       setError(null);
 
+      // Ensure we have all required data
+      if (!user?.uid) {
+        throw new Error('User authentication required');
+      }
+
+      if (!cart.length) {
+        throw new Error('Cart is empty');
+      }
+
+      // Format cart items with required fields and proper type conversion
       const formattedItems = cart.map(item => ({
-        id: item.id,
+        id: item.id || `item-${Date.now()}`, // Fallback ID if none exists
         name: item.name,
-        price: Number(item.price),
-        quantity: Number(item.quantity || 1)
+        price: Number(item.price) || 0,
+        quantity: Number(item.quantity || 1),
+        image: item.image || null,
+        category: item.category || 'uncategorized'
       }));
 
-      const result = await billService.createBill(user.uid, formattedItems, Number(total), paymentDetails);
+      // Log formatted items for debugging
+      console.log('Formatted Items:', formattedItems);
+
+      // Create bill data object with all required fields
+      const billData = {
+        userId: user.uid,
+        items: formattedItems,
+        total: Number(total.toFixed(2)),
+        status: 'pending',
+        createdAt: new Date(),
+        paymentDetails: {
+          method: paymentDetails.method,
+          status: paymentDetails.status,
+          transactionId: paymentDetails.transactionId
+        }
+      };
+
+      // Validate the data before sending
+      const validationErrors = [];
+      if (!billData.userId) validationErrors.push('Invalid user ID');
+      if (!billData.items.length) validationErrors.push('No items in cart');
+      if (isNaN(billData.total)) validationErrors.push('Invalid total amount');
+
+      if (validationErrors.length > 0) {
+        throw new Error(`Validation failed: ${validationErrors.join(', ')}`);
+      }
+
+      const result = await billService.createBill(billData);
+      
+      if (!result?.id) {
+        throw new Error('Failed to create bill: No bill ID returned');
+      }
+
       clearCart();
       setOrderId(result.id);
       setOrderSuccess(true);
     } catch (err) {
-      setError(err.message);
+      console.error('Bill creation error:', err);
+      setError(err.message || 'Failed to create bill. Please try again.');
     } finally {
       setIsProcessing(false);
       setShowPayment(false);
@@ -50,12 +95,12 @@ export default function Bill() {
       )}
       <div className="space-y-4">
         {cart.map((item) => (
-          <div key={item.id} className="flex justify-between items-center">
+          <div key={item.id || item.name} className="flex justify-between items-center">
             <div>
               <span className="font-medium">{item.name}</span>
-              <span className="text-gray-500 ml-2">x{item.quantity}</span>
+              <span className="text-gray-500 ml-2">x{item.quantity || 1}</span>
             </div>
-            <span>${(item.price * item.quantity).toFixed(2)}</span>
+            <span>${((item.price || 0) * (item.quantity || 1)).toFixed(2)}</span>
           </div>
         ))}
         <div className="border-t pt-4">
@@ -91,4 +136,4 @@ export default function Bill() {
       />
     </div>
   );
-} 
+}

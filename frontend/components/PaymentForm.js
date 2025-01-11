@@ -71,10 +71,9 @@ export default function PaymentForm({ total, onPaymentComplete }) {
         }
       }
 
-      // Here you would integrate with your payment gateway
-      // For now, we'll simulate a payment
+      // Simulate payment processing
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       onPaymentComplete({
         method: selectedMethod,
         status: 'success',

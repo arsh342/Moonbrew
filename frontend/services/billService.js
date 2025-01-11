@@ -13,40 +13,42 @@ import { Bill } from '../models/Bill';
 const COLLECTION_NAME = 'bills';
 
 export const billService = {
-  async createBill(userId, items, total, paymentDetails) {
+  async createBill(billData) {
     try {
       // Validate inputs
-      if (!userId) throw new Error('User ID is required');
-      if (!Array.isArray(items) || items.length === 0) throw new Error('Items are required');
-      if (typeof total !== 'number' || total <= 0) throw new Error('Valid total is required');
-      if (!paymentDetails) throw new Error('Payment details are required');
+      if (!billData.userId) throw new Error('User ID is required');
+      if (!Array.isArray(billData.items) || billData.items.length === 0) throw new Error('Items are required');
+      if (typeof billData.total !== 'number' || billData.total <= 0) throw new Error('Valid total is required');
+      if (!billData.paymentDetails || !billData.paymentDetails.method || !billData.paymentDetails.status) {
+        throw new Error('Valid payment details are required');
+      }
 
       // Format items
-      const formattedItems = items.map(item => ({
+      const formattedItems = billData.items.map(item => ({
         id: item.id,
         name: item.name,
         price: Number(item.price),
         quantity: Number(item.quantity)
       }));
 
-      const bill = new Bill({
-        userId,
+      const bill = {
+        userId: billData.userId,
         items: formattedItems,
-        total: Number(total),
+        total: Number(billData.total),
         paymentDetails: {
-          method: paymentDetails.method,
-          status: paymentDetails.status,
-          transactionId: paymentDetails.transactionId,
+          ...billData.paymentDetails,
           timestamp: Timestamp.now()
         },
-        status: 'pending', // Initial status
+        status: billData.status || 'pending',
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now()
-      });
+      };
 
-      const docRef = await addDoc(collection(db, COLLECTION_NAME), bill.toFirestore());
-      const createdBill = { ...bill, id: docRef.id };
-      return createdBill;
+      // Log the bill data before sending to Firestore
+      console.log('Bill Data:', bill);
+
+      const docRef = await addDoc(collection(db, COLLECTION_NAME), bill);
+      return { ...bill, id: docRef.id };
     } catch (error) {
       console.error('Error creating bill:', error);
       throw new Error(`Failed to create bill: ${error.message}`);
@@ -96,4 +98,4 @@ export const billService = {
       throw new Error(`Failed to fetch bills: ${error.message}`);
     }
   }
-}; 
+};
