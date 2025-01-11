@@ -4,7 +4,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
-  apiKey: " ",
+  apiKey: "AIzaSyBBDq4yNgInsOZNhRiHFM1A2-kVko4HW3U",
   authDomain: "moonbrew-database.firebaseapp.com",
   projectId: "moonbrew-database",
   storageBucket: "moonbrew-database.firebasestorage.app",
