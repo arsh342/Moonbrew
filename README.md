@@ -1,4 +1,3 @@
-
 # Moonbrew
 
 Moonbrew is a modern web application built with Next.js, featuring authentication using NextAuth.js. It provides a smooth and responsive user experience for logging in and managing user sessions.
@@ -54,11 +53,6 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ## Building the Application
 
-To create an optimized production build:
-
-```bash
-npm run build
-```
 
 To start the production server:
 
@@ -71,5 +65,3 @@ npm start
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-Feel free to contribute or use this template for your own projects!
