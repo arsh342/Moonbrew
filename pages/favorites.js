@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Layout from '../components/Layout' // Replace with your actual layout component
+import { products } from '../data/products' // Assuming you have a products.js file that exports the products data
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]) // Initialize with an empty array
@@ -41,7 +42,7 @@ export default function Favorites() {
   }
 
   return (
-    <Layout>
+    <Layout title="Favorites | Moonbrew Coffee">
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold text-center mb-8">Your Favorites</h1>
 
@@ -56,7 +57,7 @@ export default function Favorites() {
         ) : (
           <>
             {/* Empty State */}
-            {favorites?.length === 0 ? (
+            {favorites && Array.isArray(favorites) && favorites.length === 0 ? (
               <div className="text-center text-gray-600 text-lg">
                 You have no favorite items yet.
               </div>

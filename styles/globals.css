@@ -126,6 +126,12 @@ body {
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mb-6{
+  color: #e4e4e4;
+}
+.mb-8{
+  color: #e4e4e4;
+}
 .p-4 {
   padding: 1rem;
 }

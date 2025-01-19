@@ -28,6 +28,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'sea-stones.com',
         pathname: '/cdn/shop/products/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-icons-png.freepik.com',
+        pathname: '/256/3289/3289063.png?semt=ais_hybrid',
       }
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
