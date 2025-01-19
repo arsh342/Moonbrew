@@ -39,7 +39,7 @@ const featuredProducts = [
   }
 ];
 
-const heroImage = '/path-to-your-hero-image.jpg';
+const heroImage = 'https://sea-stones.com/cdn/shop/products/CZY-CozyCoffeeCoaster.jpg';
 
 export default function Home() {
   return (
