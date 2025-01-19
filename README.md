@@ -79,30 +79,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ---
 
-## 💂️ Project Structure
-📁 The project is organized as follows: 📁
-```plaintext
-moonbrew-coffee-shop/
-├── app/
-│   └── page.tsx
-├── public/
-│   └── images/
-│       ├── hero-image.jpg
-│       ├── espresso.jpg
-│       ├── cappuccino.jpg
-│       ├── latte.jpg
-│       ├── iced-coffee.jpg
-│       ├── croissant.jpg
-│       └── muffin.jpg
-├── .gitignore
-├── next.config.js
-├── package.json
-├── README.md
-└── tsconfig.json
-```
-
----
-
 ## 🛠 Technologies Used
 🚀 This project utilizes the following technologies: 🚀
 - [Next.js](https://nextjs.org/) - Framework for server-rendered React applications
