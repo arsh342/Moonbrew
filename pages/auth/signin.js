@@ -1,40 +1,42 @@
-import { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useState } from 'react'
+import { useAuth } from '../../contexts/AuthContext'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login, googleSignIn } = useAuth();
-  const router = useRouter();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { login, googleSignIn } = useAuth()
+  const router = useRouter()
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      setError('');
-      setLoading(true);
-      await login(email, password);
-      router.push('/');
+      setError('')
+      setLoading(true)
+      await login(email, password)
+      router.push('/') // Redirect to the index page
     } catch (err) {
-      setError('Failed to sign in: ' + err.message);
+      setError('Failed to sign in: ' + err.message)
+    } finally {
+      setLoading(false)
     }
-    setLoading(false);
   }
 
   async function handleGoogleSignIn(e) {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      setError('');
-      setLoading(true);
-      await googleSignIn();
-      router.push('/');
+      setError('')
+      setLoading(true)
+      await googleSignIn()
+      router.push('/') // Redirect to the index page after Google sign-in
     } catch (err) {
-      setError('Failed to sign in with Google: ' + err.message);
+      setError('Failed to sign in with Google: ' + err.message)
+    } finally {
+      setLoading(false)
     }
-    setLoading(false);
   }
 
   return (
@@ -93,5 +95,5 @@ export default function SignIn() {
         </div>
       </div>
     </div>
-  );
+  )
 }
