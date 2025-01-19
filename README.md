@@ -1,138 +1,75 @@
-# ☕ Moonbrew Coffee Shop
 
-## 📖 Table of Contents
-- [About](#-about)
-- [Features](#-features)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#-usage)
-- [Project Structure](#-project-structure)
-- [Technologies Used](#-technologies-used)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Contact](#-contact)
+# Moonbrew
 
----
+Moonbrew is a modern web application built with Next.js, featuring authentication using NextAuth.js. It provides a smooth and responsive user experience for logging in and managing user sessions.
 
-## 🚀 About
-🌟 Moonbrew Coffee Shop is a modern, responsive web application built with Next.js, designed to showcase our artisanal coffee selection and provide a seamless online ordering experience for coffee enthusiasts. 🌟 The application integrates a home page, menu, shopping cart, and checkout process for an all-in-one coffee-shopping experience. 🌟
+## Features
 
----
+- User authentication with NextAuth.js.
+- Responsive design for optimal viewing on all devices.
+- Easy setup and deployment.
+- Customizable authentication logic.
 
-## 🌟 Features
-- **Responsive design** for all devices
-- **Interactive menu** with category filtering
-- **Real-time shopping cart** updates
-- **Smooth animations** using Framer Motion
-- **Toast notifications** for user feedback
-- **Simplified checkout process**
+## Technologies Used
 
----
+- **Next.js** - React framework for building server-side rendered applications.
+- **NextAuth.js** - A complete authentication solution for Next.js applications.
+- **React** - JavaScript library for building user interfaces.
 
-## 🏁 Getting Started
+## Installation
 
-### Prerequisites
-📋 Before starting, ensure you have the following installed: 📋
-- Node.js (v14 or later)
-- npm or yarn
+1. Clone the repository:
 
-### Installation
-1. Clone the repository: 🌱
    ```bash
-   git clone https://github.com/your-username/moonbrew-coffee-shop.git
+   git clone https://github.com/yourusername/moonbrew.git
    ```
-2. Navigate to the project directory: 📁
+
+2. Navigate to the project folder:
+
    ```bash
-   cd moonbrew-coffee-shop
+   cd moonbrew
    ```
-3. Install the dependencies: 🔧
+
+3. Install dependencies:
+
    ```bash
    npm install
-   # or
-   yarn install
    ```
-4. Create a `next.config.js` file in the root directory with the following content: 🛠️
-   ```javascript
-   /** @type {import('next').NextConfig} */
-   const nextConfig = {
-     images: {
-       domains: ['example.com'], // Add your image domains here
-     },
-   };
 
-   module.exports = nextConfig;
+4. Set up environment variables (create `.env.local`):
+
+   ```plaintext
+   NEXTAUTH_URL=http://localhost:3000
    ```
-5. Ensure you have the necessary image files in your `public/images` directory. 🖼️
 
----
+## Running the Application
 
-## 🔤 Usage
-To run the development server: 🚀
+To run the development server:
+
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application. 🌐
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
----
+## Building the Application
 
-## 💂️ Project Structure
-📁 The project is organized as follows: 📁
-```plaintext
-moonbrew-coffee-shop/
-├── app/
-│   └── page.tsx
-├── public/
-│   └── images/
-│       ├── hero-image.jpg
-│       ├── espresso.jpg
-│       ├── cappuccino.jpg
-│       ├── latte.jpg
-│       ├── iced-coffee.jpg
-│       ├── croissant.jpg
-│       └── muffin.jpg
-├── .gitignore
-├── next.config.js
-├── package.json
-├── README.md
-└── tsconfig.json
+To create an optimized production build:
+
+```bash
+npm run build
 ```
 
----
+To start the production server:
 
-## 🛠 Technologies Used
-🚀 This project utilizes the following technologies: 🚀
-- [Next.js](https://nextjs.org/) - Framework for server-rendered React applications
-- [Framer Motion](https://www.framer.com/motion/) - For animations
-- [React Toastify](https://github.com/fkhadra/react-toastify) - For toast notifications
-- [Tailwind CSS](https://tailwindcss.com/) - For styling
-- [TypeScript](https://www.typescriptlang.org/) - For type safety
-- [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) - For code formatting and linting
+```bash
+npm start
+```
 
----
+## License
 
-## 🤝 Contributing
-Contributions are welcome! 🎉 Please follow these steps: 🎉
-1. Fork the repository.
-2. Create your feature branch: `git checkout -b feature/AmazingFeature`. 🎨
-3. Commit your changes: `git commit -m 'Add AmazingFeature'`. ✅
-4. Push to the branch: `git push origin feature/AmazingFeature`. 📤
-5. Open a Pull Request. 🚀
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👍 License
-🌟 Distributed under the MIT License. See `LICENSE` for more information. 🌟
-
----
-
-## 📞 Contact
-📬 Your Name - https://twitter.com/ - arshth134@gmail.com 📬
-
-Project Link: https://github.com/arsh342/Moonbrew 🌐
-
----
-Made with ❤️ by the Moonbrew Coffee Shop Team 🌟
+Feel free to contribute or use this template for your own projects!
