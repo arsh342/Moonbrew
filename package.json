@@ -1,20 +1,32 @@
 {
-  "name": "moonbrew",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/arsh342/Moonbrew.git"
+  "dependencies": {
+    "@babel/runtime": "^7.26.0",
+    "firebase": "^10.14.1",
+    "framer-motion": "^11.0.5",
+    "lucide-react": "^0.471.0",
+    "next": "^14.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
+    "react-toastify": "^11.0.3"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/arsh342/Moonbrew/issues"
-  },
-  "homepage": "https://github.com/arsh342/Moonbrew#readme",
-  "description": ""
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.25.9",
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/react": "19.0.2",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
 }
