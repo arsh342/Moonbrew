@@ -139,6 +139,107 @@ export const menuItems = [
     category: "Bakery",
     image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/116012_1.webp",
     ingredients: ["Flour", "Butter", "Almond Cream"]
+  },
+  // Specialty Drinks
+  {
+    name: "Matcha Latte",
+    description: "Premium green tea powder whisked with steamed milk",
+    price: 4.99,
+    category: "Specialty",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/100364.webp",
+    ingredients: ["Matcha Green Tea", "Steamed Milk"]
+  },
+  {
+    name: "Chai Tea Latte",
+    description: "Spiced black tea with steamed milk",
+    price: 4.49,
+    category: "Specialty",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/100367.webp",
+    ingredients: ["Chai Tea Blend", "Steamed Milk"]
+  },
+  {
+    name: "Hot Chocolate",
+    description: "Rich chocolate with steamed milk and whipped cream",
+    price: 3.99,
+    category: "Specialty",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/107934.webp",
+    ingredients: ["Chocolate", "Steamed Milk", "Whipped Cream"]
+  },
+  {
+    name: "London Fog",
+    description: "Earl Grey tea with vanilla and steamed milk",
+    price: 4.49,
+    category: "Specialty",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/104736.webp",
+    ingredients: ["Earl Grey Tea", "Vanilla Syrup", "Steamed Milk"]
+  },
+  {
+    name: "Golden Turmeric Latte",
+    description: "Turmeric blend with steamed milk and honey",
+    price: 4.99,
+    category: "Specialty",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/112554.webp",
+    ingredients: ["Turmeric", "Honey", "Steamed Milk", "Spices"]
+  },
+
+  // Seasonal Specials
+  {
+    name: "Pumpkin Spice Latte",
+    description: "Espresso with pumpkin spice syrup and steamed milk",
+    price: 5.49,
+    category: "Seasonal",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/100374.webp",
+    ingredients: ["Espresso", "Pumpkin Spice Syrup", "Steamed Milk", "Whipped Cream"]
+  },
+  {
+    name: "Mint Mocha",
+    description: "Chocolate and mint flavored coffee with whipped cream",
+    price: 5.49,
+    category: "Seasonal",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/104783.webp",
+    ingredients: ["Espresso", "Chocolate Sauce", "Mint Syrup", "Steamed Milk"]
+  },
+  {
+    name: "Gingerbread Latte",
+    description: "Espresso with gingerbread syrup and steamed milk",
+    price: 5.49,
+    category: "Seasonal",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/113523.webp",
+    ingredients: ["Espresso", "Gingerbread Syrup", "Steamed Milk", "Whipped Cream"]
+  },
+  {
+    name: "Maple Pecan Latte",
+    description: "Espresso with maple syrup and pecan flavoring",
+    price: 5.49,
+    category: "Seasonal",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/111091.webp",
+    ingredients: ["Espresso", "Maple Syrup", "Pecan Syrup", "Steamed Milk"]
+  },
+
+  // Breakfast Items
+  {
+    name: "Avocado Toast",
+    description: "Smashed avocado on sourdough with cherry tomatoes",
+    price: 8.99,
+    category: "Breakfast",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/115300_1.webp",
+    ingredients: ["Sourdough Bread", "Avocado", "Cherry Tomatoes", "Sea Salt"]
+  },
+  {
+    name: "Breakfast Sandwich",
+    description: "Egg, cheese, and bacon on a croissant",
+    price: 6.99,
+    category: "Breakfast",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/100096_1.webp",
+    ingredients: ["Croissant", "Egg", "Cheese", "Bacon"]
+  },
+  {
+    name: "Yogurt Parfait",
+    description: "Greek yogurt with granola and fresh berries",
+    price: 5.99,
+    category: "Breakfast",
+    image: "https://starbucksstatic.cognizantorderserv.com/Items/Large/webP/101729.webp",
+    ingredients: ["Greek Yogurt", "Granola", "Mixed Berries", "Honey"]
   }
 ];
 
