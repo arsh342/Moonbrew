@@ -1,9 +1,9 @@
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import NextAuth from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 export default NextAuth({
   providers: [
-    Providers.Credentials({
+    CredentialsProvider({
       name: 'Credentials',
       credentials: {
         username: { label: 'Username', type: 'text' },
@@ -12,13 +12,13 @@ export default NextAuth({
       authorize: async (credentials) => {
         // Replace with your own logic
         if (credentials.username === 'user' && credentials.password === 'pass') {
-          return { id: 1, name: 'User' };
+          return { id: 1, name: 'User' }
         }
-        return null;
+        return null
       }
     })
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/signin', // Optional, specify a custom sign-in page
   }
-}); 
+})
