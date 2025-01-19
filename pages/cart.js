@@ -26,19 +26,19 @@ export default function Cart() {
       <Layout>
         <div className="bg-cream-50 min-h-screen py-16">
           <div className="container mx-auto px-4">
-            <div className="empty-cart-container">
+            <div className="empty-cart-container text-center">
               <Image
                 src="/empty-cart.svg"
                 alt="Empty Cart"
                 width={200}
                 height={200}
-                className="empty-cart-image"
+                className="empty-cart-image mx-auto"
               />
-              <h2 className="empty-cart-title">Your cart is empty</h2>
-              <p className="empty-cart-text">
+              <h2 className="empty-cart-title text-2xl font-semibold mt-4">Your cart is empty</h2>
+              <p className="empty-cart-text text-sm mb-6">
                 Looks like you haven't added any items to your cart yet.
               </p>
-              <Link href="/menu" className="browse-menu-button">
+              <Link href="/menu" className="browse-menu-button text-white bg-primary rounded-lg px-6 py-3 hover:bg-primary-dark">
                 Browse Menu
               </Link>
             </div>
@@ -56,63 +56,62 @@ export default function Cart() {
     <Layout>
       <div className="bg-cream-50 min-h-screen py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-12 text-center">Your Cart</h1>
+          <h1 className="text-3xl font-bold mb-8 text-center text-primary">Your Cart</h1>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Cart Items */}
             <div className="lg:col-span-2">
               <motion.div
-                className="space-y-4"
+                className="space-y-6"
                 variants={container}
                 initial="hidden"
                 animate="show"
               >
                 {cart.map((item) => (
-                  <motion.div key={item.id} variants={item} className="card">
-                    <div className="card-content">
-                      <div className="card-image">
+                  <motion.div key={item.id} variants={item} className="card p-4 bg-white shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="card-content flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-6">
+                      <div className="card-image w-24 h-24 relative">
                         <Image
                           src={item.image}
                           alt={item.name}
-                          fill
-                          sizes="96px"
-                          className="object-cover"
-                          onError={(e) => (e.target.src = '/default-image.jpg')} // Fallback image
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-lg"
+                          onError={(e) => (e.target.src = '/default-image.jpg')}
                         />
                       </div>
-                      <div className="card-details">
-                        <h3 className="card-title">{item.name}</h3>
-                        <p className="card-price">${item.price.toFixed(2)}</p>
-                        <div className="flex items-center gap-4">
-                          <div className="quantity-controls">
+                      <div className="card-details flex flex-col space-y-2">
+                        <h3 className="card-title text-lg font-medium text-primary">{item.name}</h3>
+                        <p className="card-price text-base font-semibold">${item.price.toFixed(2)}</p>
+                        <div className="flex items-center gap-2">
+                          <div className="quantity-controls flex items-center space-x-2">
                             <button
                               onClick={() =>
-                                item.quantity > 1 &&
-                                updateQuantity(item.id, item.quantity - 1)
+                                item.quantity > 1 && updateQuantity(item.id, item.quantity - 1)
                               }
-                              className="quantity-button rounded-l-full"
+                              className="quantity-button w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 transition duration-200"
                             >
                               -
                             </button>
-                            <span className="px-4 py-1">{item.quantity || 1}</span>
+                            <span className="px-4 py-1 text-base">{item.quantity || 1}</span>
                             <button
                               onClick={() =>
                                 updateQuantity(item.id, (item.quantity || 1) + 1)
                               }
-                              className="quantity-button rounded-r-full"
+                              className="quantity-button w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 transition duration-200"
                             >
                               +
                             </button>
                           </div>
                           <button
                             onClick={() => removeFromCart(item.id)}
-                            className="remove-button"
+                            className="remove-button text-red-500 font-semibold hover:text-red-700 transition duration-200"
                           >
                             Remove
                           </button>
                         </div>
                       </div>
-                      <div className="font-bold text-lg">
+                      <div className="font-bold text-lg text-primary">
                         ${(item.price * (item.quantity || 1)).toFixed(2)}
                       </div>
                     </div>
@@ -131,10 +130,10 @@ export default function Cart() {
 
           {/* Cart Total */}
           <div className="mt-8 text-right">
-            <h3 className="text-2xl font-semibold">Total: ${totalAmount}</h3>
+            {/* <h3 className="text-xl font-semibold">Total: ${totalAmount}</h3> */}
             <Link
               href="/checkout"
-              className="bill-button"
+              className="bill-button mt-4 bg-primary text-white rounded-lg px-8 py-3 hover:bg-primary-dark"
             >
               Proceed to Checkout
             </Link>

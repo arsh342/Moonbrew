@@ -29,7 +29,7 @@ export default function Layout({ children, title = 'Moonbrew Coffee' }) {
         <meta property="og:description" content="Enjoy premium quality coffee delivered straight to your door" />
         <meta property="og:image" content="/path/to/your/image.jpg" /> {/* Add an image for social media preview */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" /> {/* Add favicon */}
+        <link rel="icon" href="https://cdn-icons-png.freepik.com/256/3289/3289063.png?semt=ais_hybrid" /> {/* Add favicon */}
       </Head>
       <Navbar />
       <AnimatePresence mode="wait">
