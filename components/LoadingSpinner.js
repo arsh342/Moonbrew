@@ -1,20 +1,19 @@
+// Updated LoadingSpinner.js
 export default function LoadingSpinner({ size = "medium" }) {
-  // Define size classes based on the size prop
   const sizeClasses = {
-    small: "h-4 w-4",
-    medium: "h-8 w-8",
-    large: "h-12 w-12"
-  };
+    small: "h-6 w-6 border-4",
+    medium: "h-10 w-10 border-4",
+    large: "h-16 w-16 border-4"
+  }
 
-  // Ensure fallback to medium if the size is not defined correctly
-  const spinnerSize = sizeClasses[size] || sizeClasses.medium;
+  const spinnerSize = sizeClasses[size] || sizeClasses.medium
 
   return (
     <div className="flex justify-center items-center">
-      <div 
-        className={`${spinnerSize} animate-spin rounded-full border-2 border-gray-300 border-t-green-700`}
-        aria-label="Loading" // Accessibility improvement for screen readers
+      <div
+        className={`${spinnerSize} animate-spin rounded-full border-t-green-600 border-l-green-600 border-r-green-300 border-b-green-300`}
+        aria-label="Loading"
       />
     </div>
-  );
+  )
 }
