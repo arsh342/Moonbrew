@@ -97,7 +97,7 @@ We welcome contributions! To contribute:
 We’d love to hear from you! Feel free to reach out:
 
 - 📧 Email: arshth134@gmail.com
-- 💼 LinkedIn: https://www.linkedin.com/in/arsh-singh-615903330/
+- 💼 LinkedIn: [https://www.linkedin.com/in/arsh-singh-615903330/](https://www.linkedin.com/in/arshsingh342/)
 - 🐦 Twitter: https://x.com/Thearshsran
 - 🌐 Website: https://moonbrew.vercel.app/
 
