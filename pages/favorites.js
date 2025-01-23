@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Layout from '../components/Layout' // Replace with your actual layout component
-import { products } from '../data/products' // Assuming you have a products.js file that exports the products data
+import Layout from '../components/Layout'
+import { products } from '../data/products'
 
 export default function Favorites() {
-  const [favorites, setFavorites] = useState([]) // Initialize with an empty array
+  const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // Simulate API call to fetch favorites
   const fetchFavorites = async () => {
     try {
       setLoading(true)
       setError(null)
-      // Simulate an API call delay
       const response = await new Promise((resolve) =>
         setTimeout(() => resolve([{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }]), 2000)
       )
@@ -25,12 +23,10 @@ export default function Favorites() {
     }
   }
 
-  // Fetch favorites on component mount
   useEffect(() => {
     fetchFavorites()
   }, [])
 
-  // Variants for animation
   const gridVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
@@ -46,17 +42,14 @@ export default function Favorites() {
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold text-center mb-8">Your Favorites</h1>
 
-        {/* Error Message */}
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
-        {/* Loading State */}
         {loading ? (
           <div className="flex justify-center items-center h-64 text-gray-600 text-lg">
             Loading your favorite items...
           </div>
         ) : (
           <>
-            {/* Empty State */}
             {favorites && Array.isArray(favorites) && favorites.length === 0 ? (
               <div className="text-center text-gray-600 text-lg">
                 You have no favorite items yet.
