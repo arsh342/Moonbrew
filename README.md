@@ -1,41 +1,43 @@
-# Moonbrew
+# 🌙 Moonbrew
 
-Moonbrew is a modern web application built with Next.js, featuring authentication using NextAuth.js. It provides a smooth and responsive user experience for logging in and managing user sessions.
+Moonbrew is a modern web application built with Next.js, featuring authentication using NextAuth.js and Firebase. It provides a smooth and responsive user experience for logging in, managing user sessions, and storing data securely.
 
-## Features
+## ✨ Features
 
-- User authentication with NextAuth.js.
-- Responsive design for optimal viewing on all devices.
-- Easy setup and deployment.
-- Customizable authentication logic.
+- 🔒 User authentication with NextAuth.js and Firebase Authentication.
+- 🗂️ Secure storage of bills and orders using Firebase Firestore.
+- 📱 Responsive design for optimal viewing on all devices.
+- 🚀 Easy setup and deployment.
+- ⚙️ Customizable authentication logic.
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - **Next.js** - React framework for building server-side rendered applications.
 - **NextAuth.js** - A complete authentication solution for Next.js applications.
+- **Firebase** - Backend-as-a-Service for authentication and database storage.
 - **React** - JavaScript library for building user interfaces.
 
-## Installation
+## ⚙️ Installation
 
-1. Clone the repository:
+1. 📥 Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/moonbrew.git
+   git clone https://github.com/arsh342/moonbrew.git
    ```
 
-2. Navigate to the project folder:
+2. 📂 Navigate to the project folder:
 
    ```bash
    cd moonbrew
    ```
 
-3. Install dependencies:
+3. 📦 Install dependencies:
 
    ```bash
    npm install
    ```
 
-4. Set up environment variables (create `.env.local`):
+4. 🛠️ Set up environment variables (create `.env.local`):
 
    ```plaintext
    NEXTAUTH_URL=http://localhost:3000
@@ -51,7 +53,7 @@ Moonbrew is a modern web application built with Next.js, featuring authenticatio
    NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
    ```
 
-## Running the Application
+## 🚀 Running the Application
 
 To run the development server:
 
@@ -61,8 +63,19 @@ npm run dev
 
 The app will be available at [http://localhost:3000](http://localhost:3000).
 
-## Building the Application
+### 🧑‍💻 In Development Mode
 
+When running in development mode, you can:
+- 🐛 Debug using detailed logs and error messages.
+- 🔄 Use hot reloading for instant updates.
+
+## 📦 Building the Application
+
+To build the application for production:
+
+```bash
+npm run build
+```
 
 To start the production server:
 
@@ -70,8 +83,24 @@ To start the production server:
 npm start
 ```
 
-## License
+## 🤝 Contributing
+
+We welcome contributions! To contribute:
+
+1. 🍴 Fork the repository.
+2. 🌱 Create a new branch for your feature or bug fix.
+3. ✍️ Commit your changes and push them to your fork.
+4. 🔁 Open a pull request detailing your changes.
+
+## 📬 Contact
+
+We’d love to hear from you! Feel free to reach out:
+
+- 📧 Email: arshth134@gmail.com
+- 💼 LinkedIn: https://www.linkedin.com/in/arsh-singh-615903330/
+- 🐦 Twitter: https://x.com/Thearshsran
+- 🌐 Website: https://moonbrew.vercel.app/
+
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
