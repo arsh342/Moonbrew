@@ -4,17 +4,16 @@ import { useCart } from '../components/CartContext';
 import { billService } from '../services/billService';
 import PaymentForm from './PaymentForm';
 import OrderSuccessModal from './OrderSuccessModal';
+import { motion } from 'framer-motion';
 
 export default function Bill() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState(null);
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, total } = useCart();
   const { user } = useAuth();
   const [showPayment, setShowPayment] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderId, setOrderId] = useState(null);
-
-  const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
 
   const handlePaymentComplete = async (paymentDetails) => {
     try {
@@ -51,7 +50,6 @@ export default function Bill() {
         }
       };
 
-      // Simple validation
       if (!billData.userId || !billData.items.length || isNaN(billData.total)) {
         throw new Error('Invalid data. Please check your cart and try again.');
       }
@@ -74,8 +72,13 @@ export default function Bill() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Your Bill</h2>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      className="bg-white p-6 rounded-lg shadow-md"
+    >
+      <h2 className="text-2xl font-bold mb-4 text-emerald-800">Your Bill</h2>
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
           {error}
@@ -83,18 +86,18 @@ export default function Bill() {
       )}
       <div className="space-y-4">
         {cart.map((item) => (
-          <div key={item.id || item.name} className="flex justify-between items-center">
+          <div key={item.cartItemId} className="flex justify-between items-center">
             <div>
-              <span className="font-medium">{item.name}</span>
-              <span className="text-gray-500 ml-2">x{item.quantity || 1}</span>
+              <span className="font-medium text-emerald-900">{item.name}</span>
+              <span className="text-emerald-600 ml-2">x{item.quantity}</span>
             </div>
-            <span>${((item.price || 0) * (item.quantity || 1)).toFixed(2)}</span>
+            <span className="text-emerald-800">${((item.price || 0) * (item.quantity || 1)).toFixed(2)}</span>
           </div>
         ))}
         <div className="border-t pt-4">
           <div className="flex justify-between items-center font-bold">
-            <span>Total</span>
-            <span>${total.toFixed(2)}</span>
+            <span className="text-emerald-900">Total</span>
+            <span className="text-emerald-700">${total.toFixed(2)}</span>
           </div>
         </div>
 
@@ -110,7 +113,7 @@ export default function Bill() {
             className={`w-full py-2 px-4 rounded-full font-semibold ${
               isProcessing || cart.length === 0
                 ? 'bg-gray-300 cursor-not-allowed'
-                : 'bg-green-700 text-white hover:bg-green-800'
+                : 'bg-emerald-600 text-white hover:bg-emerald-700'
             }`}
           >
             {isProcessing ? 'Processing...' : 'Proceed to Payment'}
@@ -122,6 +125,6 @@ export default function Bill() {
         onClose={() => setOrderSuccess(false)}
         orderId={orderId}
       />
-    </div>
+    </motion.div>
   );
 }
