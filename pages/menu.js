@@ -90,9 +90,9 @@ export default function Menu() {
                   <div className="p-6">
                     <p className="text-gray-600 mb-4">{item.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {item.ingredients?.map((ingredient, index) => (
+                      {item.ingredients?.map((ingredient) => (
                         <span 
-                          key={ingredient} // Using ingredient as the unique key
+                          key={ingredient}
                           className="bg-cream-50 text-gray-700 px-2 py-1 rounded-full text-sm"
                         >
                           {ingredient}

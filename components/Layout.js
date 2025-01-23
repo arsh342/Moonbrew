@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Layout({ children, title = 'Moonbrew Coffee' }) {
@@ -27,9 +28,9 @@ export default function Layout({ children, title = 'Moonbrew Coffee' }) {
         <meta name="description" content="Premium coffee delivered to your door" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content="Enjoy premium quality coffee delivered straight to your door" />
-        <meta property="og:image" content="/path/to/your/image.jpg" /> {/* Add an image for social media preview */}
+        <meta property="og:image" content="/path/to/your/image.jpg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="https://cdn-icons-png.freepik.com/256/3289/3289063.png?semt=ais_hybrid" /> {/* Add favicon */}
+        <link rel="icon" href="https://cdn-icons-png.freepik.com/256/3289/3289063.png?semt=ais_hybrid" />
       </Head>
       <Navbar />
       <AnimatePresence mode="wait">
@@ -43,6 +44,7 @@ export default function Layout({ children, title = 'Moonbrew Coffee' }) {
           {children}
         </motion.main>
       </AnimatePresence>
+      <Footer />
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <Layout>
+      <Layout title="Cart | Moonbrew Coffee">
         <div className="bg-cream-50 min-h-screen py-16">
           <div className="container mx-auto px-4">
             <div className="empty-cart-container text-center">
@@ -53,7 +53,7 @@ export default function Cart() {
     .toFixed(2)
 
   return (
-    <Layout>
+    <Layout title="Cart | Moonbrew Coffee">
       <div className="bg-cream-50 min-h-screen py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold mb-8 text-center text-primary">Your Cart</h1>
@@ -130,7 +130,6 @@ export default function Cart() {
 
           {/* Cart Total */}
           <div className="mt-8 text-right">
-            {/* <h3 className="text-xl font-semibold">Total: ${totalAmount}</h3> */}
             <Link
               href="/checkout"
               className="bill-button mt-4 bg-primary text-white rounded-lg px-8 py-3 hover:bg-primary-dark"
