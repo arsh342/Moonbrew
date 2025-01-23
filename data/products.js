@@ -312,3 +312,13 @@ if (index !== -1) {
 export function isInFavorites(productId) {
 return favorites.some(favorite => favorite.id === productId);
 }
+export function toggleFavorite(product) {
+  const index = favorites.findIndex(favorite => favorite.id === product.id);
+  if (index !== -1) {
+    favorites.splice(index, 1);
+    return false;
+  } else {
+    favorites.push(product);
+    return true;
+  }
+}

@@ -1,20 +1,22 @@
-import Head from 'next/head';
-import Layout from '../components/Layout';
-import { useCart } from '../components/CartContext';
-import Image from 'next/image';
-import { menuItems } from '../data/products';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-hot-toast';
+import Head from 'next/head'
+import Layout from '../components/Layout'
+import { useCart } from '../components/CartContext'
+import Image from 'next/image'
+import { menuItems } from '../data/products'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { toast } from 'react-hot-toast'
+import { toggleFavorite, isInFavorites } from '../data/products'
+import { Heart } from 'lucide-react'
 
 export default function Menu() {
-  const { addToCart } = useCart();
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = ['All', 'Hot Coffee', 'Iced Coffee', 'Bakery', 'Breakfast', 'Seasonal', 'Specialty'];
+  const { addToCart } = useCart()
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const categories = ['All', 'Hot Coffee', 'Iced Coffee', 'Bakery', 'Breakfast', 'Seasonal', 'Specialty']
 
-  const filteredItems = selectedCategory === 'All' 
-    ? menuItems 
-    : menuItems.filter(item => item.category === selectedCategory);
+  const filteredItems = selectedCategory === 'All'
+    ? menuItems
+    : menuItems.filter(item => item.category === selectedCategory)
 
   const container = {
     hidden: { opacity: 0 },
@@ -24,12 +26,12 @@ export default function Menu() {
         staggerChildren: 0.1
       }
     }
-  };
+  }
 
   const itemAnimation = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
-  };
+  }
 
   return (
     <Layout title="Menu | Moonbrew Coffee">
@@ -70,8 +72,20 @@ export default function Menu() {
                 <motion.div
                   key={item.id}
                   variants={itemAnimation}
-                  className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105"
+                  className="relative bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105"
                 >
+                  {/* Favorite heart icon */}
+                  <button 
+                    onClick={() => toggleFavorite(item)}
+                    className="absolute top-4 right-4 z-10 bg-white/50 rounded-full p-2 hover:bg-white/75 transition"
+                  >
+                    <Heart 
+                      fill={isInFavorites(item.id) ? 'red' : 'none'} 
+                      color="red" 
+                      className="w-6 h-6"
+                    />
+                  </button>
+
                   <div className="relative h-64">
                     <Image
                       src={item.image}
@@ -103,8 +117,8 @@ export default function Menu() {
                       <span className="text-xl font-bold">${item.price.toFixed(2)}</span>
                       <button 
                         onClick={() => {
-                          addToCart(item);
-                          toast.success('Added to cart!');
+                          addToCart(item)
+                          toast.success('Added to cart!')
                         }}
                         className="bg-green-700 text-white px-6 py-2 rounded-full hover:bg-green-800 transition-colors duration-200"
                       >
@@ -119,5 +133,5 @@ export default function Menu() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
