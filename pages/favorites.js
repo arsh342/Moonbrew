@@ -1,88 +1,73 @@
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import Layout from '../components/Layout'
-import { products } from '../data/products'
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Layout from '../components/Layout';
+import { favorites, removeFromFavorites } from '../data/products';
+import Image from 'next/image';
+import { Heart } from 'lucide-react';
 
 export default function Favorites() {
-  const [favorites, setFavorites] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  const fetchFavorites = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      const response = await new Promise((resolve) =>
-        setTimeout(() => resolve([{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }]), 2000)
-      )
-      setFavorites(response)
-    } catch (err) {
-      setError('Failed to fetch favorite items.')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchFavorites()
-  }, [])
+  const [favoriteItems, setFavoriteItems] = useState(favorites);
 
   const gridVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
+
+  const handleRemoveFavorite = (productId) => {
+    removeFromFavorites(productId);
+    setFavoriteItems(favorites);
+  };
 
   return (
     <Layout title="Favorites | Moonbrew Coffee">
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold text-center mb-8">Your Favorites</h1>
 
-        {error && <div className="text-red-500 text-center mb-4">{error}</div>}
-
-        {loading ? (
-          <div className="flex justify-center items-center h-64 text-gray-600 text-lg">
-            Loading your favorite items...
+        {favoriteItems.length === 0 ? (
+          <div className="text-center text-gray-600 text-lg">
+            You have no favorite items yet.
           </div>
         ) : (
-          <>
-            {favorites && Array.isArray(favorites) && favorites.length === 0 ? (
-              <div className="text-center text-gray-600 text-lg">
-                You have no favorite items yet.
-              </div>
-            ) : (
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={gridVariants}
+          >
+            {favoriteItems.map((item) => (
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-                initial="hidden"
-                animate="visible"
-                variants={gridVariants}
+                key={item.id}
+                className="bg-white rounded-lg shadow-md overflow-hidden"
+                variants={itemVariants}
               >
-                {favorites.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    className="p-4 border rounded-lg shadow hover:shadow-lg transition-shadow"
-                    variants={itemVariants}
+                <div className="relative h-48">
+                  <Image 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    className="object-cover"
+                  />
+                  <button 
+                    onClick={() => handleRemoveFavorite(item.id)}
+                    className="absolute top-2 right-2 bg-white/75 rounded-full p-2"
                   >
-                    <h2 className="text-lg font-semibold text-gray-800">{item.name}</h2>
-                    <button
-                      className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-                      onClick={() => {
-                        setFavorites(favorites.filter((fav) => fav.id !== item.id))
-                      }}
-                    >
-                      Remove
-                    </button>
-                  </motion.div>
-                ))}
+                    <Heart fill="red" color="red" className="w-6 h-6" />
+                  </button>
+                </div>
+                <div className="p-4">
+                  <h2 className="text-lg font-semibold">{item.name}</h2>
+                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                </div>
               </motion.div>
-            )}
-          </>
+            ))}
+          </motion.div>
         )}
       </div>
     </Layout>
-  )
+  );
 }

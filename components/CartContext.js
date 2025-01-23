@@ -24,30 +24,15 @@ export function CartProvider({ children }) {
 
   const addToCart = (item) => {
     setCart(currentCart => {
-      // Create a unique cart item ID that includes the product's ID
-      const cartItemId = `${item.id}`;
+      // Create a unique cart item ID
+      const newCartItemId = `${item.id}_${Date.now()}`;
 
-      // Check if the same item already exists in the cart
-      const existingItemIndex = currentCart.findIndex(
-        cartItem => cartItem.cartItemId === cartItemId
-      );
-
-      if (existingItemIndex > -1) {
-        // If the item exists, update its quantity
-        const updatedCart = [...currentCart];
-        updatedCart[existingItemIndex] = {
-          ...updatedCart[existingItemIndex],
-          quantity: (updatedCart[existingItemIndex].quantity || 1) + 1
-        };
-        return updatedCart;
-      } else {
-        // If the item doesn't exist, add it to the cart with quantity 1
-        return [...currentCart, {
-          ...item,
-          cartItemId,
-          quantity: 1
-        }];
-      }
+      // Add the new item to the cart
+      return [...currentCart, {
+        ...item,
+        cartItemId: newCartItemId,
+        quantity: 1
+      }];
     });
   };
 
@@ -79,13 +64,13 @@ export function CartProvider({ children }) {
 
   const getCartTotal = () => {
     return cart.reduce((total, item) => 
-      total + (item.price * (item.quantity || 1)), 0
+      total + (item.price * item.quantity), 0
     );
   };
 
   const getItemCount = () => {
     return cart.reduce((count, item) => 
-      count + (item.quantity || 1), 0
+      count + item.quantity, 0
     );
   };
 

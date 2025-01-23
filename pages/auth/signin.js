@@ -40,8 +40,8 @@ export default function SignIn() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f1e4d3] flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-[400px]">
+    <div className="min-h-screen bg-gradient-to-r from-emerald-900 to-emerald-700 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="bg-white p-6 sm:p-8 rounded-lg shadow-xl w-full max-w-md">
         <h2 className="text-3xl font-semibold text-[#1e3932] mb-6 text-center">Welcome Back</h2>
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -71,7 +71,7 @@ export default function SignIn() {
           </div>
           <button
             disabled={loading}
-            className="w-full bg-[#1e3932] text-white py-2 rounded font-medium hover:bg-[#163028]"
+            className="w-full bg-yellow-500 text-brown-900 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-all transform hover:scale-105"
             type="submit"
           >
             Sign In
@@ -80,15 +80,18 @@ export default function SignIn() {
         <div className="mt-4">
           <button
             onClick={handleGoogleSignIn}
-            className="w-full bg-[#d54b40] text-white py-2 rounded font-medium hover:bg-[#b53d35]"
+            className="w-full bg-white text-gray-700 py-3 rounded-full font-semibold border border-gray-300 hover:bg-gray-50 transition-all transform hover:scale-105 mt-4"
           >
-            Sign in with Google
+            <div className="flex items-center justify-center">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" className="w-5 h-5 mr-2" />
+              Sign in with Google
+            </div>
           </button>
         </div>
         <div className="text-center mt-4">
           <p className="text-sm text-[#6b6b6b]">
             Don't have an account?{' '}
-            <Link href="/auth/signup" className="text-[#1e3932] font-medium hover:underline">
+            <Link href="/auth/signup" className="text-yellow-500 font-medium hover:underline">
               Sign Up
             </Link>
           </p>
@@ -97,3 +100,4 @@ export default function SignIn() {
     </div>
   )
 }
+
