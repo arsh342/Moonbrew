@@ -27,6 +27,7 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 .mb-2{
@@ -41,11 +42,14 @@ body {
 .p-6 .font-bold{
   color: #0a0a0a;
 }
+.container .mb-8{
+  color:#047857;
+}
 
 /* Tailwind Dark Mode Compatibility */
 .dark {
   --background: #0a0a0a;
-  --foreground: #e4e4e4;
+  --foreground: #c8c8c8;
 }
 
 /* Keyframes for Steam Animation */
