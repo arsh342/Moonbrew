@@ -1,115 +1,116 @@
 // contexts/AuthContext.js
-import { createContext, useContext, useEffect, useState } from 'react';
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut, 
+import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithPopup
-} from 'firebase/auth';
-import { auth, db } from '../config/firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { useRouter } from 'next/router';
+  signInWithPopup,
+} from 'firebase/auth'
+import { auth, db } from '../config/firebase'
+import { doc, getDoc } from 'firebase/firestore'
+import { useRouter } from 'next/router'
+import LoadingScreen from '../components/LoadingScreen' // Import the LoadingScreen component
 
-const AuthContext = createContext();
+const AuthContext = createContext()
 
 export function useAuth() {
-  return useContext(AuthContext);
+  return useContext(AuthContext)
 }
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const router = useRouter();
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const router = useRouter()
 
   function signup(email, password) {
-    setLoading(true);
+    setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        setError(null);
+        setError(null)
       })
       .catch((error) => {
-        setError(error.message);
+        setError(error.message)
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false))
   }
 
   function login(email, password) {
-    setLoading(true);
+    setLoading(true)
     return signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        setError(null);
+        setError(null)
       })
       .catch((error) => {
-        setError(error.message);
+        setError(error.message)
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false))
   }
 
   function logout() {
     return signOut(auth)
       .then(() => {
-        setError(null);
+        setError(null)
       })
       .catch((error) => {
-        setError(error.message);
-      });
+        setError(error.message)
+      })
   }
 
   function googleSignIn() {
-    const googleProvider = new GoogleAuthProvider();
-    setLoading(true);
+    const googleProvider = new GoogleAuthProvider()
+    setLoading(true)
     return signInWithPopup(auth, googleProvider)
       .then(() => {
-        setError(null);
+        setError(null)
       })
       .catch((error) => {
-        setError(error.message);
+        setError(error.message)
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false))
   }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-        const userData = userDoc.data();
-        
+        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid))
+        const userData = userDoc.data()
+
         setUser({
           uid: firebaseUser.uid,
           email: firebaseUser.email,
           name: userData?.name || firebaseUser.displayName || 'User',
-          ...userData
-        });
+          ...userData,
+        })
       } else {
-        setUser(null);
+        setUser(null)
       }
-      setLoading(false);
-    });
+      setLoading(false)
+    })
 
-    return unsubscribe;
-  }, []);
+    return unsubscribe
+  }, [])
 
   // Updated redirect logic
   useEffect(() => {
     if (user && router.isReady) {
       // Only redirect from auth pages
-      const authRoutes = ['/auth/signin', '/auth/signup'];
-      
+      const authRoutes = ['/auth/signin', '/auth/signup']
+
       if (authRoutes.includes(router.pathname)) {
-        router.push('/index');
+        router.push('/index')
       }
     } else if (!user && router.isReady) {
       // Protect private routes
-      const protectedRoutes = ['/dashboard', '/orders', '/favorites'];
-      
+      const protectedRoutes = ['/dashboard', '/orders', '/favorites']
+
       if (protectedRoutes.includes(router.pathname)) {
-        router.push('/auth/signin');
+        router.push('/auth/signin')
       }
     }
-  }, [user, router.isReady, router.pathname]);
+  }, [user, router.isReady, router.pathname])
 
   const value = {
     user,
@@ -117,15 +118,13 @@ export function AuthProvider({ children }) {
     login,
     logout,
     googleSignIn,
-    error
-  };
+    error,
+  }
 
   return (
     <AuthContext.Provider value={value}>
       {loading ? (
-        <div className="loading-spinner">
-          {/* <p>Loading...</p> */}
-        </div>
+        <LoadingScreen /> // Use LoadingScreen here
       ) : (
         <>
           {error && <div className="error-message">{error}</div>}
@@ -133,5 +132,5 @@ export function AuthProvider({ children }) {
         </>
       )}
     </AuthContext.Provider>
-  );
+  )
 }
