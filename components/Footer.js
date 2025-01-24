@@ -35,8 +35,8 @@ export default function Footer() {
   ]
 
   const quickLinks = [
-    { href: "#", text: "Menu" },
-    { href: "#", text: "Locations" },
+    { href: "https://moonbrew.vercel.app/menu/", text: "Menu" },
+    { href: "https://www.google.com/maps/", text: "Locations" },
     { href: "#", text: "Rewards Program" },
     { href: "#", text: "Gift Cards" },
   ]
