@@ -235,14 +235,14 @@ export default function Checkout() {
               <button
                 onClick={handleCheckout}
                 disabled={loading || cart.length === 0}
-                className={`w-full mt-6 py-3 rounded-lg text-white transition-colors ${
-                  loading || cart.length === 0
+                className={`w-full mt-6 py-3 rounded-lg text-white transition-colors ${loading || cart.length === 0
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-primary hover:bg-primary-dark'
-                }`}
+                    : 'bg-gray-800 hover:bg-gray-900'
+                  }`}
               >
                 {loading ? 'Processing...' : 'Complete Order'}
               </button>
+
             </div>
           </div>
         </div>

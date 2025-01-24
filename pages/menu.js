@@ -7,11 +7,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { toast } from 'react-hot-toast'
 import { toggleFavorite, isInFavorites } from '../data/products'
-import { Heart } from 'lucide-react'
+import { Heart, ChevronDown, ChevronUp } from 'lucide-react'
 
 export default function Menu() {
   const { addToCart } = useCart()
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [favoriteStatus, setFavoriteStatus] = useState({})
+  const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false)
   const categories = ['All', 'Hot Coffee', 'Iced Coffee', 'Bakery', 'Breakfast', 'Seasonal', 'Specialty']
 
   const filteredItems = selectedCategory === 'All'
@@ -33,14 +35,49 @@ export default function Menu() {
     show: { opacity: 1, y: 0 }
   }
 
+  const handleFavoriteToggle = (item) => {
+    const newStatus = toggleFavorite(item, 'menuItems')
+    setFavoriteStatus(prev => ({
+      ...prev,
+      [item.id]: newStatus
+    }))
+  }
+
   return (
     <Layout title="Menu | Moonbrew Coffee">
       <div className="bg-cream-50 min-h-screen-dynamic py-8 sm:py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl sm:text-4xl font-bold text-center mb-6 sm:mb-8">Our Menu</h1>
           
-          {/* Category Filter */}
-          <div className="flex justify-center space-x-2 sm:space-x-4 mb-8 sm:mb-12 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          {/* Category Filter for Mobile */}
+          <div className="sm:hidden mb-6">
+            <div 
+              onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+              className="flex justify-between items-center bg-white p-3 rounded-lg shadow-md"
+            >
+              <span className="font-semibold">{selectedCategory}</span>
+              {isCategoryDropdownOpen ? <ChevronUp /> : <ChevronDown />}
+            </div>
+            {isCategoryDropdownOpen && (
+              <div className="absolute z-10 w-[calc(100%-2rem)] bg-white rounded-lg shadow-lg mt-2">
+                {categories.map(category => (
+                  <div 
+                    key={category}
+                    onClick={() => {
+                      setSelectedCategory(category)
+                      setIsCategoryDropdownOpen(false)
+                    }}
+                    className="p-3 hover:bg-green-50 cursor-pointer"
+                  >
+                    {category}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Category Filter for Desktop */}
+          <div className="hidden sm:flex justify-center space-x-2 sm:space-x-4 mb-8 sm:mb-12 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
             {categories.map(category => (
               <button
                 key={category}
@@ -76,11 +113,11 @@ export default function Menu() {
                 >
                   {/* Favorite heart icon */}
                   <button 
-                    onClick={() => toggleFavorite(item)}
+                    onClick={() => handleFavoriteToggle(item)}
                     className="absolute top-4 right-4 z-10 bg-white/50 rounded-full p-2 hover:bg-white/75 transition"
                   >
                     <Heart 
-                      fill={isInFavorites(item.id) ? 'red' : 'none'} 
+                      fill={(favoriteStatus[item.id] || isInFavorites(item.id, 'menuItems')) ? 'red' : 'none'} 
                       color="red" 
                       className="w-6 h-6"
                     />
