@@ -1,6 +1,7 @@
 const menuItems = [
     // Hot Coffees
     {
+      id:"classic-espresso",
       name: "Classic Espresso",
       description: "Rich and bold single shot of espresso",
       price: 2.99,
@@ -9,6 +10,7 @@ const menuItems = [
       ingredients: ["Espresso"]
     },
     {
+      id:"cappuccino",
       name: "Cappuccino",
       description: "Espresso topped with foamy milk and a sprinkle of cocoa powder",
       price: 4.49,
@@ -17,6 +19,7 @@ const menuItems = [
       ingredients: ["Espresso", "Steamed Milk", "Milk Foam"]
     },
     {
+      id:"caramel-macchiato",
       name: "Caramel Macchiato",
       description: "Espresso with vanilla-flavored syrup, steamed milk and caramel drizzle",
       price: 4.99,
@@ -25,6 +28,7 @@ const menuItems = [
       ingredients: ["Espresso", "Vanilla Syrup", "Steamed Milk", "Caramel Sauce"]
     },
     {
+      id:"vietnamese-coffee",
       name: "Vietnamese Coffee",
       description: "Traditional Vietnamese coffee with condensed milk",
       price: 4.49,
@@ -33,6 +37,7 @@ const menuItems = [
       ingredients: ["Dark Roast Coffee", "Condensed Milk"]
     },
     {
+      id:"cafe-latte",
       name: "Cafe Latte",
       description: "Espresso with steamed milk and light foam",
       price: 4.29,
@@ -41,6 +46,7 @@ const menuItems = [
       ingredients: ["Espresso", "Steamed Milk", "Light Foam"]
     },
     {
+      id:"mocha",
       name: "Mocha",
       description: "Espresso with chocolate sauce and steamed milk",
       price: 4.79,
@@ -51,6 +57,7 @@ const menuItems = [
   
     // Iced Coffees
     {
+      id:"iced-americano",
       name: "Iced Americano",
       description: "Chilled espresso with cold water and ice",
       price: 3.99,
@@ -59,6 +66,7 @@ const menuItems = [
       ingredients: ["Espresso", "Water", "Ice"]
     },
     {
+      id:"iced-brown-sugar-latte",
       name: "Iced Brown Sugar Latte",
       description: "Espresso with brown sugar syrup and cold milk over ice",
       price: 5.49,
@@ -67,6 +75,7 @@ const menuItems = [
       ingredients: ["Espresso", "Brown Sugar Syrup", "Milk", "Ice"]
     },
     {
+      id:"cold-brew",
       name: "Cold Brew",
       description: "Smooth, cold-steeped coffee served over ice",
       price: 4.49,
@@ -75,6 +84,7 @@ const menuItems = [
       ingredients: ["Cold Brew Coffee", "Ice"]
     },
     {
+      id:"iced-vanilla-latte",
       name: "Iced Vanilla Latte",
       description: "Espresso with vanilla syrup and cold milk over ice",
       price: 4.99,
@@ -83,6 +93,7 @@ const menuItems = [
       ingredients: ["Espresso", "Vanilla Syrup", "Milk", "Ice"]
     },
     {
+      id:"iced-mocha",
       name: "Iced Mocha",
       description: "Chilled espresso with chocolate sauce and cold milk",
       price: 5.29,
@@ -93,6 +104,7 @@ const menuItems = [
   
     // Bakery Items
     {
+      id:"butter-croissant",
       name: "Butter Croissant",
       description: "Flaky, buttery layers of freshly baked croissant",
       price: 3.49,
@@ -101,6 +113,7 @@ const menuItems = [
       ingredients: ["Flour", "Butter", "Yeast"]
     },
     {
+      id:"chocolate-muffin",
       name: "Chocolate Muffin",
       description: "Rich chocolate muffin with chocolate chips",
       price: 3.99,
@@ -109,6 +122,7 @@ const menuItems = [
       ingredients: ["Flour", "Cocoa", "Chocolate Chips"]
     },
     {
+      id:"blueberry-scone",
       name: "Blueberry Scone",
       description: "Buttery scone filled with fresh blueberries",
       price: 3.99,
@@ -117,6 +131,7 @@ const menuItems = [
       ingredients: ["Flour", "Butter", "Blueberries"]
     },
     {
+      id:"cinnamon-roll",
       name: "Cinnamon Roll",
       description: "Warm, gooey cinnamon roll with cream cheese frosting",
       price: 4.49,
@@ -125,6 +140,7 @@ const menuItems = [
       ingredients: ["Flour", "Cinnamon", "Cream Cheese Frosting"]
     },
     {
+      id:"banana-bread",
       name: "Banana Bread",
       description: "Moist banana bread with walnuts",
       price: 3.99,
@@ -133,6 +149,7 @@ const menuItems = [
       ingredients: ["Flour", "Bananas", "Walnuts"]
     },
     {
+      id:"almond-danish",
       name: "Almond Danish",
       description: "Flaky pastry filled with almond cream",
       price: 4.29,
@@ -143,6 +160,7 @@ const menuItems = [
   
     // Specialty Drinks
     {
+      id:"matcha-latte",
       name: "Matcha Latte",
       description: "Premium green tea powder whisked with steamed milk",
       price: 4.99,
@@ -151,6 +169,7 @@ const menuItems = [
       ingredients: ["Matcha Green Tea", "Steamed Milk"]
     },
     {
+      id:"chai-tea-latte",
       name: "Chai Tea Latte",
       description: "Spiced black tea with steamed milk",
       price: 4.49,
@@ -159,6 +178,7 @@ const menuItems = [
       ingredients: ["Chai Tea Blend", "Steamed Milk"]
     },
     {
+      id:"hot-chocolate",
       name: "Hot Chocolate",
       description: "Rich chocolate with steamed milk and whipped cream",
       price: 3.99,
@@ -167,6 +187,7 @@ const menuItems = [
       ingredients: ["Chocolate", "Steamed Milk", "Whipped Cream"]
     },
     {
+      id:"london-fog",
       name: "London Fog",
       description: "Earl Grey tea with vanilla and steamed milk",
       price: 4.49,
@@ -175,6 +196,7 @@ const menuItems = [
       ingredients: ["Earl Grey Tea", "Vanilla Syrup", "Steamed Milk"]
     },
     {
+      id:"golden-turmeric-latte",
       name: "Golden Turmeric Latte",
       description: "Turmeric blend with steamed milk and honey",
       price: 4.99,
@@ -185,6 +207,7 @@ const menuItems = [
   
     // Seasonal Specials
     {
+      id:"pumpkin-spice-latte",
       name: "Pumpkin Spice Latte",
       description: "Espresso with pumpkin spice syrup and steamed milk",
       price: 5.49,
@@ -193,6 +216,7 @@ const menuItems = [
       ingredients: ["Espresso", "Pumpkin Spice Syrup", "Steamed Milk", "Whipped Cream"]
     },
     {
+      id:"mint-mocha",
       name: "Mint Mocha",
       description: "Chocolate and mint flavored coffee with whipped cream",
       price: 5.49,
@@ -201,6 +225,7 @@ const menuItems = [
       ingredients: ["Espresso", "Chocolate Sauce", "Mint Syrup", "Steamed Milk"]
     },
     {
+      id:"gingerbread-latte",
       name: "Gingerbread Latte",
       description: "Espresso with gingerbread syrup and steamed milk",
       price: 5.49,
@@ -209,6 +234,7 @@ const menuItems = [
       ingredients: ["Espresso", "Gingerbread Syrup", "Steamed Milk", "Whipped Cream"]
     },
     {
+      id:"maple-pecan-latte",
       name: "Maple Pecan Latte",
       description: "Espresso with maple syrup and pecan flavoring",
       price: 5.49,
@@ -219,6 +245,7 @@ const menuItems = [
   
     // Breakfast Items
     {
+      id:"avocado-toast",
       name: "Avocado Toast",
       description: "Smashed avocado on sourdough with cherry tomatoes",
       price: 8.99,
@@ -227,6 +254,7 @@ const menuItems = [
       ingredients: ["Sourdough Bread", "Avocado", "Cherry Tomatoes", "Sea Salt"]
     },
     {
+      id:"breakfast-sandwich",
       name: "Breakfast Sandwich",
       description: "Egg, cheese, and bacon on a croissant",
       price: 6.99,
@@ -235,6 +263,7 @@ const menuItems = [
       ingredients: ["Croissant", "Egg", "Cheese", "Bacon"]
     },
     {
+      id:"yogurt-parfait",
       name: "Yogurt Parfait",
       description: "Greek yogurt with granola and fresh berries",
       price: 5.99,

@@ -6,8 +6,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --accent: #4f46e5; /* Tailwind indigo-600 for accent color */
-  --muted: #171717;  /* Tailwind gray-500 for muted text */
+  --accent: #047857; /* Changed to emerald-700 to match our theme */
+  --muted: #4b5563;  /* Tailwind gray-600 for muted text */
   --danger: #ef4444; /* Tailwind red-500 for error/danger */
   --success: #22c55e; /* Tailwind green-500 for success */
 }
@@ -16,9 +16,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #171717; /* Light gray for dark mode text */
-    --accent: #6366f1; /* Slightly lighter indigo */
-    --muted: #a3a3a3; /* Muted gray for dark mode */
+    --foreground: #e4e4e4; /* Light gray for dark mode text */
+    --accent: #10b981; /* Emerald-500 for dark mode */
+    --muted: #9ca3af; /* Muted gray for dark mode */
   }
 }
 
@@ -27,6 +27,19 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   transition: background 0.3s ease, color 0.3s ease;
+}
+
+.mb-2{
+  color: #0a0a0a;
+}
+.space-y-2{
+  color: #0a0a0a;
+}
+.mt-4{
+  color: #0a0a0a;
+}
+.p-6 .font-bold{
+  color: #0a0a0a;
 }
 
 /* Tailwind Dark Mode Compatibility */
@@ -67,82 +80,33 @@ body {
 
 /* Custom Utility Classes */
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  @apply max-w-7xl mx-auto px-4;
 }
 
 .card {
-  background: var(--background);
-  border: 1px solid var(--muted);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md p-6 transition duration-300 ease-in-out;
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  @apply shadow-lg transform -translate-y-1;
 }
 
 .btn {
-  background: var(--accent);
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  transition: background 0.3s ease;
-}
-.btn:hover {
-  background: darken(var(--accent), 10%);
+  @apply bg-emerald-600 text-white py-2 px-4 rounded-full font-semibold hover:bg-emerald-700 transition duration-300 ease-in-out;
 }
 .btn-danger {
-  background: var(--danger);
+  @apply bg-red-500 hover:bg-red-600;
 }
 .btn-success {
-  background: var(--success);
+  @apply bg-green-500 hover:bg-green-600;
 }
 
 /* Typography */
 .heading {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: var(--foreground);
+  @apply text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100;
 }
 .text-muted {
-  color: var(--muted);
+  @apply text-gray-600 dark:text-gray-400;
 }
-
-/* Utility Classes for Spacing */
-.mt-2 {
-  margin-top: 0.5rem;
-}
-.mb-2{
-  color: var(--muted);
-}
-.mb-4 {
-  margin-bottom: 1rem;
-}
-.mb-6{
-  color: #e4e4e4;
-}
-.mb-8{
-  color: #e4e4e4;
-}
-.p-4 {
-  padding: 1rem;
-}
-/* .font-medium {
-  font-weight: 500;
-  color: #0a0a0a;
-}
-.p6 .font-bold {
-  font-weight: bold;
-  color: #0a0a0a;
-} */
 
 /* Animation Enhancements */
 @keyframes fadeIn {
@@ -160,28 +124,28 @@ body {
 }
 
 /* Cart Item Card */
-.card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200;
+.cart-item-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200;
 }
 
-.card-content {
-  @apply p-6 flex items-center gap-6;
+.cart-item-content {
+  @apply p-4 flex items-center gap-4;
 }
 
-.card-image {
-  @apply w-24 h-24 relative rounded-lg overflow-hidden border border-gray-200;
+.cart-item-image {
+  @apply w-20 h-20 relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-700;
 }
 
-.card-details {
+.cart-item-details {
   @apply flex-grow;
 }
 
-.card-title {
-  @apply font-bold text-lg mb-1 text-gray-800;
+.cart-item-title {
+  @apply font-bold text-lg mb-1 text-gray-800 dark:text-gray-200;
 }
 
-.card-price {
-  @apply text-gray-600 mb-4 text-sm;
+.cart-item-price {
+  @apply text-gray-600 dark:text-gray-400 mb-2 text-sm;
 }
 
 .quantity-controls {
@@ -189,7 +153,7 @@ body {
 }
 
 .quantity-button {
-  @apply px-3 py-1 bg-gray-50 hover:bg-gray-100 transition duration-150 ease-in-out;
+  @apply px-3 py-1 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition duration-150 ease-in-out;
 }
 
 .remove-button {
@@ -198,15 +162,15 @@ body {
 
 /* Bill Summary */
 .bill-summary {
-  @apply bg-white rounded-lg shadow-lg p-6 sticky top-4;
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 sticky top-4;
 }
 
 .bill-total {
-  @apply text-xl font-semibold text-gray-800;
+  @apply text-xl font-semibold text-gray-800 dark:text-gray-200;
 }
 
 .bill-button {
-  @apply w-full bg-green-700 text-white py-3 rounded-lg font-semibold text-center mt-4 hover:bg-green-800 transition duration-200;
+  @apply w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold text-center mt-4 hover:bg-emerald-700 transition duration-200;
 }
 
 /* Empty Cart */
@@ -219,13 +183,13 @@ body {
 }
 
 .empty-cart-title {
-  @apply text-2xl font-bold mb-4 text-gray-800;
+  @apply text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200;
 }
 
 .empty-cart-text {
-  @apply text-gray-600 mb-8;
+  @apply text-gray-600 dark:text-gray-400 mb-8;
 }
 
 .browse-menu-button {
-  @apply bg-green-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-800 transition duration-200;
+  @apply bg-emerald-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-emerald-700 transition duration-200;
 }

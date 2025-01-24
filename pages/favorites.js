@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
-import { favorites, removeFromFavorites } from '../data/products';
+import { favorites } from '../data/products';
 import Image from 'next/image';
 import { Heart } from 'lucide-react';
+import { removeFromFavorites } from '../data/products';
 
 export default function Favorites() {
-  const [favoriteItems, setFavoriteItems] = useState(favorites);
+  const [favoriteItems, setFavoriteItems] = useState([]);
+
+  useEffect(() => {
+    // Combine favorites from different types and ensure unique items
+    const allFavorites = [
+      ...favorites.menuItems, 
+      ...favorites.featuredProducts
+    ];
+    
+    // Remove duplicates using Set based on id
+    const uniqueFavorites = Array.from(
+      new Map(allFavorites.map(item => [item.id, item])).values()
+    );
+    
+    setFavoriteItems(uniqueFavorites);
+  }, []);
 
   const gridVariants = {
     hidden: { opacity: 0 },
@@ -19,8 +35,29 @@ export default function Favorites() {
   };
 
   const handleRemoveFavorite = (productId) => {
-    removeFromFavorites(productId);
-    setFavoriteItems(favorites);
+    // Determine which list the product is in and remove it
+    const menuItemIndex = favorites.menuItems.findIndex(item => item.id === productId);
+    const featuredProductIndex = favorites.featuredProducts.findIndex(item => item.id === productId);
+
+    if (menuItemIndex !== -1) {
+      removeFromFavorites(productId, 'menuItems');
+    }
+    if (featuredProductIndex !== -1) {
+      removeFromFavorites(productId, 'featuredProducts');
+    }
+    
+    // Update the displayed favorites
+    const updatedFavorites = [
+      ...favorites.menuItems, 
+      ...favorites.featuredProducts
+    ];
+    
+    // Remove duplicates
+    const uniqueFavorites = Array.from(
+      new Map(updatedFavorites.map(item => [item.id, item])).values()
+    );
+    
+    setFavoriteItems(uniqueFavorites);
   };
 
   return (
@@ -67,6 +104,7 @@ export default function Favorites() {
             ))}
           </motion.div>
         )}
+        <h1 className="text-3xl font-bold text-center mb-8"> </h1>
       </div>
     </Layout>
   );

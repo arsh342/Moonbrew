@@ -124,7 +124,7 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider value={value}>
       {loading ? (
         <div className="loading-spinner">
-          <p>Loading...</p>
+          {/* <p>Loading...</p> */}
         </div>
       ) : (
         <>
