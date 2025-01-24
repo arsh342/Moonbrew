@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import { motion } from "framer-motion"
 import { useCart } from "../components/CartContext"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const featuredProducts = [
   {
@@ -111,14 +111,14 @@ export default function Home() {
         </section>
 
         {/* Featured Products Carousel */}
-        <section className="bg-gray-50 dark:bg-gray-900 py-12 md:py-24">
+        <section className="bg-white py-12 md:py-24">
           <div className="container">
-            <h2 className="heading text-center mb-8">
+            <h2 className="heading text-center mb-8 text-gray-900">
               Featured Products
             </h2>
-            <div className="relative">
+            <div className="relative overflow-hidden">
               <motion.div
-                className="flex w-full transition-transform duration-300 ease-in-out"
+                className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {featuredProducts.map((product) => (
@@ -129,7 +129,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="card">
+                    <div className="card bg-white shadow-md rounded-lg p-4">
                       <div className="relative h-48 md:h-56 mb-4">
                         <Image
                           src={product.image || "/placeholder.svg"}
@@ -138,15 +138,15 @@ export default function Home() {
                           className="object-cover rounded-lg"
                         />
                       </div>
-                      <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-gray-200">{product.name}</h3>
-                      <p className="text-muted mb-4">{product.description}</p>
+                      <h3 className="font-bold text-lg mb-2 text-gray-900">{product.name}</h3>
+                      <p className="text-muted mb-4 text-gray-800">{product.description}</p>
                       <div className="flex justify-between items-center">
-                        <span className="font-bold text-gray-800 dark:text-gray-200">${product.price.toFixed(2)}</span>
+                        <span className="font-bold text-gray-900">${product.price.toFixed(2)}</span>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => addToCart(product)}
-                          className="btn"
+                          className="btn text-white bg-emerald-700 hover:bg-emerald-800"
                         >
                           Add to Cart
                         </motion.button>
@@ -157,19 +157,20 @@ export default function Home() {
               </motion.div>
               <button
                 onClick={prevSlide}
-                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors duration-300"
               >
-                <ChevronLeft className="w-5 h-5 text-gray-800 dark:text-gray-200" />
+                <ChevronLeft className="w-5 h-5 text-gray-800" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors duration-300"
               >
-                <ChevronRight className="w-5 h-5 text-gray-800 dark:text-gray-200" />
+                <ChevronRight className="w-5 h-5 text-gray-800" />
               </button>
             </div>
           </div>
         </section>
+
       </main>
 
       <Footer />
