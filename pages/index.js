@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import { motion } from "framer-motion"
 import { useCart } from "../components/CartContext"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const featuredProducts = [
   {
@@ -118,13 +118,13 @@ export default function Home() {
             </h2>
             <div className="relative">
               <motion.div
-                className="flex transition-transform duration-300 ease-in-out overflow-hidden"
+                className="flex w-full transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {featuredProducts.map((product) => (
                   <motion.div
                     key={product.id}
-                    className="w-full flex-shrink-0 px-2 md:px-4"
+                    className="w-full flex-shrink-0 px-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
