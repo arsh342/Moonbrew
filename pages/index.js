@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import { motion } from "framer-motion"
 import { useCart } from "../components/CartContext"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const featuredProducts = [
   {
@@ -59,7 +59,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setInterval(nextSlide, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, [nextSlide, featuredProducts.length]) // Added dependencies to useEffect
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -68,7 +68,7 @@ export default function Home() {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-emerald-900 to-emerald-700 text-white">
-          <div className="container py-12 md:py-24">
+          <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -76,17 +76,15 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="text-center md:text-left md:w-1/2 mb-8 md:mb-0"
               >
-                <h1 className="heading text-4xl md:text-6xl text-white mb-4">
-                  Savor the Moment
-                </h1>
-                <p className="text-muted text-lg md:text-xl mb-6">
+                <h1 className="text-4xl md:text-6xl font-bold mb-4">Savor the Moment</h1>
+                <p className="text-lg md:text-xl mb-6 text-emerald-100">
                   Indulge in our expertly crafted coffees, now available for delivery.
                 </p>
                 <Link href="/menu" passHref>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn"
+                    className="bg-yellow-500 text-emerald-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-all"
                   >
                     Explore Our Menu
                   </motion.button>
@@ -112,10 +110,8 @@ export default function Home() {
 
         {/* Featured Products Carousel */}
         <section className="bg-white py-12 md:py-24">
-          <div className="container">
-            <h2 className="heading text-center mb-8 text-gray-900">
-              Featured Products
-            </h2>
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-emerald-800">Featured Products</h2>
             <div className="relative overflow-hidden">
               <motion.div
                 className="flex transition-transform duration-300 ease-in-out"
@@ -129,7 +125,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="card bg-white shadow-md rounded-lg p-4">
+                    <div className="bg-gray-800 shadow-md rounded-lg p-4">
                       <div className="relative h-48 md:h-56 mb-4">
                         <Image
                           src={product.image || "/placeholder.svg"}
@@ -138,15 +134,15 @@ export default function Home() {
                           className="object-cover rounded-lg"
                         />
                       </div>
-                      <h3 className="font-bold text-lg mb-2 text-gray-900">{product.name}</h3>
-                      <p className="text-muted mb-4 text-gray-800">{product.description}</p>
+                      <h3 className="font-bold text-lg mb-2 text-gray-100">{product.name}</h3>
+                      <p className="mb-4 text-gray-300">{product.description}</p>
                       <div className="flex justify-between items-center">
-                        <span className="font-bold text-gray-900">${product.price.toFixed(2)}</span>
+                        <span className="font-bold text-gray-100">${product.price.toFixed(2)}</span>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => addToCart(product)}
-                          className="btn text-white bg-emerald-700 hover:bg-emerald-800"
+                          className="bg-emerald-600 text-white px-4 py-2 rounded-full hover:bg-emerald-700 transition-colors"
                         >
                           Add to Cart
                         </motion.button>
@@ -170,10 +166,10 @@ export default function Home() {
             </div>
           </div>
         </section>
-
       </main>
 
       <Footer />
     </div>
   )
 }
+
