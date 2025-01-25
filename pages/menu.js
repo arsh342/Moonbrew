@@ -45,7 +45,7 @@ export default function Menu() {
               onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
               className="flex justify-between items-center bg-white p-3 rounded-lg shadow-md"
             >
-              <span className="font-semibold">{selectedCategory}</span>
+              <span className="font-bold">{selectedCategory}</span>
               {isCategoryDropdownOpen ? <ChevronUp /> : <ChevronDown />}
             </div>
             {isCategoryDropdownOpen && (
