@@ -1,82 +1,58 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  const [isLocalStorageAvailable, setIsLocalStorageAvailable] = useState(true);
 
-  // Check localStorage availability and load cart
+  // Load cart from localStorage on mount
   useEffect(() => {
-    try {
-      localStorage.getItem('cart');
-      const savedCart = localStorage.getItem('cart');
-      if (savedCart) {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      try {
         setCart(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Error loading cart from localStorage:', error);
       }
-    } catch (error) {
-      setIsLocalStorageAvailable(false);
-      console.error('localStorage not available:', error);
     }
   }, []);
 
-  // Save cart to localStorage
+  // Save cart to localStorage whenever it changes
   useEffect(() => {
-    if (isLocalStorageAvailable) {
-      try {
-        localStorage.setItem('cart', JSON.stringify(cart));
-      } catch (error) {
-        console.error('Error saving cart to localStorage:', error);
-      }
-    }
-  }, [cart, isLocalStorageAvailable]);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
-  const addToCart = (item, quantity = 1) => {
+  const addToCart = (item) => {
     setCart(currentCart => {
-      // Check if item already exists (without cartItemId)
-      const existingItemIndex = currentCart.findIndex(
-        cartItem => cartItem.id === item.id && 
-        cartItem.size === item.size
-      );
-
-      if (existingItemIndex > -1) {
-        const updatedCart = [...currentCart];
-        updatedCart[existingItemIndex].quantity += quantity;
-        return updatedCart;
-      }
-
       // Create a unique cart item ID
       const newCartItemId = `${item.id}_${Date.now()}`;
 
       // Add the new item to the cart
-      const newCartItem = {
+      return [...currentCart, {
         ...item,
         cartItemId: newCartItemId,
-        quantity: quantity
-      };
-
-      toast.success('Added to cart!');
-      return [...currentCart, newCartItem];
+        quantity: 1
+      }];
     });
   };
 
-  const removeFromCart = (cartItemId) => {
+  const removeFromCart = (identifier) => {
     setCart(currentCart => 
-      currentCart.filter(item => item.cartItemId !== cartItemId)
+      currentCart.filter(item => 
+        item.cartItemId !== identifier && item.id !== identifier
+      )
     );
-    toast.success('Removed from cart');
   };
 
-  const updateQuantity = (cartItemId, newQuantity) => {
+  const updateQuantity = (identifier, newQuantity) => {
     if (newQuantity < 1) {
-      removeFromCart(cartItemId);
+      removeFromCart(identifier);
       return;
     }
 
     setCart(currentCart =>
       currentCart.map(item =>
-        item.cartItemId === cartItemId
+        (item.cartItemId === identifier || item.id === identifier)
           ? { ...item, quantity: newQuantity }
           : item
       )
@@ -85,10 +61,7 @@ export function CartProvider({ children }) {
 
   const clearCart = () => {
     setCart([]);
-    if (isLocalStorageAvailable) {
-      localStorage.removeItem('cart');
-    }
-    toast.success('Cart cleared');
+    localStorage.removeItem('cart');
   };
 
   const getCartTotal = () => {
