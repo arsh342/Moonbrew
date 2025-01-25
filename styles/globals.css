@@ -45,6 +45,9 @@ body {
 .container .mb-8{
   color:#047857;
 }
+.input{
+  color:#0a0a0a;
+}
 
 /* Tailwind Dark Mode Compatibility */
 .dark {
