@@ -69,6 +69,11 @@ export default function SignIn() {
               required
             />
           </div>
+          <div className="text-right mb-4">
+            <Link href="/auth/forgotpassword" className="text-yellow-500 text-sm hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
           <button
             disabled={loading}
             className="w-full bg-yellow-500 text-brown-900 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-all transform hover:scale-105"
@@ -100,4 +105,3 @@ export default function SignIn() {
     </div>
   )
 }
-
