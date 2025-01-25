@@ -40,7 +40,7 @@ export default function Menu() {
           <h1 className="text-3xl sm:text-4xl font-bold text-center mb-6 sm:mb-8">Our Menu</h1>
           
           {/* Category Filter for Mobile */}
-          <div className="sm:hidden mb-6">
+          <div className="sm:hidden mb-6 z-10">
             <div 
               onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
               className="flex justify-between items-center bg-white p-3 rounded-lg shadow-md"
