@@ -1,18 +1,18 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import { useCart } from '../components/CartContext'
+import { useFavorites } from '../components/FavoritesContext'
 import Image from 'next/image'
 import { menuItems } from '../data/products'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { toast } from 'react-hot-toast'
-import { toggleFavorite, isInFavorites } from '../data/products'
 import { Heart, ChevronDown, ChevronUp } from 'lucide-react'
 
 export default function Menu() {
   const { addToCart } = useCart()
+  const { toggleFavorite, isInFavorites } = useFavorites()
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [favoriteStatus, setFavoriteStatus] = useState({})
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false)
   const categories = ['All', 'Hot Coffee', 'Iced Coffee', 'Bakery', 'Breakfast', 'Seasonal', 'Specialty']
 
@@ -24,23 +24,13 @@ export default function Menu() {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   }
 
   const itemAnimation = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
-  }
-
-  const handleFavoriteToggle = (item) => {
-    const newStatus = toggleFavorite(item, 'menuItems')
-    setFavoriteStatus(prev => ({
-      ...prev,
-      [item.id]: newStatus
-    }))
   }
 
   return (
@@ -113,11 +103,11 @@ export default function Menu() {
                 >
                   {/* Favorite heart icon */}
                   <button 
-                    onClick={() => handleFavoriteToggle(item)}
+                    onClick={() => toggleFavorite(item)}
                     className="absolute top-4 right-4 z-10 bg-white/50 rounded-full p-2 hover:bg-white/75 transition"
                   >
                     <Heart 
-                      fill={(favoriteStatus[item.id] || isInFavorites(item.id, 'menuItems')) ? 'red' : 'none'} 
+                      fill={isInFavorites(item.id) ? 'red' : 'none'} 
                       color="red" 
                       className="w-6 h-6"
                     />
