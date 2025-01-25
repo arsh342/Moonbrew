@@ -48,7 +48,9 @@ body {
 .input{
   color:#0a0a0a;
 }
-
+.w-full{
+  color:#0a0a0a;
+}
 /* Tailwind Dark Mode Compatibility */
 .dark {
   --background: #0a0a0a;
