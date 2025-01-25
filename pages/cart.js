@@ -87,21 +87,21 @@ export default function Cart() {
                           <div className="quantity-controls flex items-center space-x-2">
                             <button
                               onClick={() => item.quantity > 1 && updateQuantity(item.id, item.quantity - 1)}
-                              className="quantity-button w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 transition duration-200 text-gray-700"
+                              className="quantity-button w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-300 transition duration-200 text-gray-700"
                             >
                               -
                             </button>
                             <span className="px-4 py-1 text-base text-gray-300">{item.quantity || 1}</span>
                             <button
                               onClick={() => updateQuantity(item.id, (item.quantity || 1) + 1)}
-                              className="quantity-button w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 transition duration-200 text-gray-700"
+                              className="quantity-button w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-300 transition duration-200 text-gray-700"
                             >
                               +
                             </button>
                           </div>
                           <button
                             onClick={() => removeFromCart(item.id)}
-                            className="remove-button text-red-400 font-semibold hover:text-red-500 transition duration-200"
+                            className="remove-button text-white-400 font-semibold hover:text-red-500 transition duration-200"
                           >
                             Remove
                           </button>
