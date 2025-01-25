@@ -51,6 +51,9 @@ body {
 .w-full{
   color:#0a0a0a;
 }
+.p-4 .text-lg{
+  color:#047857;
+}
 /* Tailwind Dark Mode Compatibility */
 .dark {
   --background: #0a0a0a;
