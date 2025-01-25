@@ -1,5 +1,7 @@
 import { CartProvider } from '../components/CartContext';
 import { AuthProvider } from '../contexts/AuthContext';
+import { FavoritesProvider } from '../components/FavoritesContext';
+import { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import '../styles/globals.css';
@@ -35,9 +37,18 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <AuthProvider>
         <CartProvider>
-          <div className="min-h-screen flex flex-col">
-            <Component {...pageProps} />
-          </div>
+          <FavoritesProvider>
+            <div className="min-h-screen flex flex-col">
+              <Component {...pageProps} />
+              <Toaster 
+                position="top-right"
+                toastOptions={{
+                  success: { duration: 2000 },
+                  error: { duration: 3000 }
+                }}
+              />
+            </div>
+          </FavoritesProvider>
         </CartProvider>
       </AuthProvider>
     </>

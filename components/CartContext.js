@@ -36,21 +36,23 @@ export function CartProvider({ children }) {
     });
   };
 
-  const removeFromCart = (cartItemId) => {
+  const removeFromCart = (identifier) => {
     setCart(currentCart => 
-      currentCart.filter(item => item.cartItemId !== cartItemId)
+      currentCart.filter(item => 
+        item.cartItemId !== identifier && item.id !== identifier
+      )
     );
   };
 
-  const updateQuantity = (cartItemId, newQuantity) => {
+  const updateQuantity = (identifier, newQuantity) => {
     if (newQuantity < 1) {
-      removeFromCart(cartItemId);
+      removeFromCart(identifier);
       return;
     }
 
     setCart(currentCart =>
       currentCart.map(item =>
-        item.cartItemId === cartItemId
+        (item.cartItemId === identifier || item.id === identifier)
           ? { ...item, quantity: newQuantity }
           : item
       )
