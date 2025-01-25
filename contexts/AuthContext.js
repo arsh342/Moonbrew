@@ -1,4 +1,3 @@
-// contexts/AuthContext.js
 import { createContext, useContext, useEffect, useState } from 'react'
 import {
   createUserWithEmailAndPassword,
@@ -7,11 +6,12 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from 'firebase/auth'
 import { auth, db } from '../config/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useRouter } from 'next/router'
-import LoadingScreen from '../components/LoadingScreen' // Import the LoadingScreen component
+import LoadingScreen from '../components/LoadingScreen'
 
 const AuthContext = createContext()
 
@@ -59,6 +59,20 @@ export function AuthProvider({ children }) {
       })
   }
 
+  function resetPassword(email) {
+    setLoading(true)
+    return sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setError(null)
+        return true
+      })
+      .catch((error) => {
+        setError(error.message)
+        return false
+      })
+      .finally(() => setLoading(false))
+  }
+
   function googleSignIn() {
     const googleProvider = new GoogleAuthProvider()
     setLoading(true)
@@ -93,17 +107,14 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  // Updated redirect logic
   useEffect(() => {
     if (user && router.isReady) {
-      // Only redirect from auth pages
-      const authRoutes = ['/auth/signin', '/auth/signup']
+      const authRoutes = ['/auth/signin', '/auth/signup', '/auth/forgotpassword']
 
       if (authRoutes.includes(router.pathname)) {
         router.push('/index')
       }
     } else if (!user && router.isReady) {
-      // Protect private routes
       const protectedRoutes = ['/dashboard', '/orders', '/favorites']
 
       if (protectedRoutes.includes(router.pathname)) {
@@ -118,13 +129,14 @@ export function AuthProvider({ children }) {
     login,
     logout,
     googleSignIn,
+    resetPassword,
     error,
   }
 
   return (
     <AuthContext.Provider value={value}>
       {loading ? (
-        <LoadingScreen /> // Use LoadingScreen here
+        <LoadingScreen />
       ) : (
         <>
           {error && <div className="error-message">{error}</div>}
