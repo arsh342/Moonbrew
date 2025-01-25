@@ -57,6 +57,9 @@ body {
 .p-4 .text-lg{
   color:#047857;
 }
+.p-3{
+  color:#0a0a0a;
+}
 /* Tailwind Dark Mode Compatibility */
 .dark {
   --background: #0a0a0a;
