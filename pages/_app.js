@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="google-site-verification" content="PZ7tspF0Dsl_d9Zt1_aOoDmIVuEsPV2PJtCERRBzKH8" />
       </Head>
       <AuthProvider>
         <CartProvider>
